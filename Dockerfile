@@ -43,7 +43,7 @@ COPY --from=builder /snap/snapcraft /snap/snapcraft
 COPY --from=builder /snap/bin/snapcraft /snap/bin/snapcraft
 
 # Generate locale and install dependencies.
-RUN apt-get update && apt-get dist-upgrade --yes && apt-get install --yes snapd sudo locales && locale-gen en_US.UTF-8
+RUN apt-get update && apt-get dist-upgrade --yes && apt-get install --yes snapd sudo locales bash && locale-gen en_US.UTF-8
 
 # Set the proper environment.
 ENV LANG="en_US.UTF-8"
@@ -62,4 +62,4 @@ RUN echo "packager ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 USER packager
 WORKDIR /home/packager
 VOLUME /home/packager
-ENTRYPOINT [ "/usr/bin/bash" ]
+ENTRYPOINT [ "/bin/bash" ]
