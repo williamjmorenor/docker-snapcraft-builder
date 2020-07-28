@@ -19,6 +19,18 @@ From the project directory run the image:
 docker run --name snap-packaging -v $PWD:/home/packager:rw -ti williamjmorenor/snapcraft-builder
 ```
 
+The snapcraft command is available:
+
+```bash
+ packager@ed8fa654731b:~$ snapcraft --help
+[...]
+packager@ed8fa654731b:~$ whoami
+packager
+packager@ed8fa654731b:~$ pwd
+/home/packager
+```
+Note the image not run as root.
+
 To finish the sesion in the container just type:
 
 ```bash
