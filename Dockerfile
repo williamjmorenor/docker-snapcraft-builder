@@ -53,3 +53,13 @@ ENV PATH="/snap/bin:$PATH"
 ENV SNAP="/snap/snapcraft/current"
 ENV SNAP_NAME="snapcraft"
 ENV SNAP_ARCH="amd64"
+
+# Create a user to not run packaging tasks as root
+RUN adduser packager
+# Use sudo without password.
+RUN echo "packager ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+# Define user and home for packaging.
+USER packager
+WORKDIR /home/packager
+VOLUME /home/packager
+ENTRYPOINT [ "/usr/bin/bash" ]
